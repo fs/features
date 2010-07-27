@@ -1,0 +1,37 @@
+<% title 'Listing features' %>
+
+<% if @features.blank? %>
+  <h2>No features in the base</h2>
+  Try to create <%= link_to 'new one', new_feature_path %>
+<% else %>
+  <% @features.each do |feature| %>
+    <ul>
+      <li>
+        <%= link_to(feature.name, feature_path(feature)) %> |
+        <%= link_to 'Edit', edit_feature_path(feature), :class => 'edit' %> |
+        <%= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %>
+
+        <ul>
+          <li>
+            EST <%= feature.est %>H
+          </li>
+          <% if feature.source_url %>
+            <li>
+              Source at <%= link_to feature.source_url, feature.source_url %>
+            </li>
+          <% end %>
+
+          <% if feature.demo_url %>
+            <li>
+              Demo at <%= link_to feature.demo_url, feature.demo_url %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+
+  <%= link_to 'New feature', new_feature_path %>
+<% end %>
+
+

@@ -1,0 +1,32 @@
+<% title @feature.name %>
+
+<ul>
+  <li>
+    EST <%= @feature.est %>H
+  </li>
+  <% if @feature.source_url %>
+    <li>
+      Source at <%= link_to @feature.source_url, @feature.source_url %>
+    </li>
+  <% end %>
+
+  <% if @feature.demo_url %>
+    <li>
+      Demo at <%= link_to @feature.demo_url, @feature.demo_url %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @feature.feature %>
+  <pre class="code"><%= @feature.feature %></pre>
+<% end %>
+
+<% if @feature.description %>
+  <p><%= @feature.description %></p>
+<% end %>
+
+<hr />
+
+<%= link_to 'Edit', edit_feature_path(@feature) %> or
+<%= link_to 'Back', :back %>
+

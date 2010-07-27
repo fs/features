@@ -4,5 +4,6 @@ Features::Application.routes.draw do
   match 'logout', :to  => 'devise/sessions#destroy', :as => 'destroy_user_session'
   match 'signup', :to => 'devise/registrations#new', :as => 'new_user_registration'
 
+  resources :features
   root :to => 'dashboard#index'
 end
