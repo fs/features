@@ -7,4 +7,8 @@ module ApplicationHelper
   def show_title?
     @show_title
   end
+
+  def markup(text)
+    auto_link(simple_format(text))
+  end
 end
