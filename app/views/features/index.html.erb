@@ -15,13 +15,13 @@
           <li>
             EST <%= feature.est %>H
           </li>
-          <% if feature.source_url %>
+          <% unless feature.source_url.blank? %>
             <li>
               Source at <%= link_to feature.source_url, feature.source_url %>
             </li>
           <% end %>
 
-          <% if feature.demo_url %>
+          <% unless feature.demo_url.blank? %>
             <li>
               Demo at <%= link_to feature.demo_url, feature.demo_url %>
             </li>

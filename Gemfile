@@ -9,6 +9,7 @@ gem 'devise', '1.1.rc2'
 gem 'simple-navigation'
 gem 'formtastic', :git => "http://github.com/justinfrench/formtastic.git", :branch => "rails3"
 gem 'flutie'
+gem 'RedCloth'
 
 # Heroku hack b/c we don't want use these gem on heroku env
 unless HEROKU

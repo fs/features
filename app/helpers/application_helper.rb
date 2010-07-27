@@ -9,6 +9,6 @@ module ApplicationHelper
   end
 
   def markup(text)
-    auto_link(simple_format(text))
+    textilize(auto_link(text))
   end
 end
