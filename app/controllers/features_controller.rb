@@ -3,7 +3,6 @@ require 'ostruct'
 class FeaturesController < ApplicationController
   navigation :features
   before_filter :authenticate_user!, :load_tags
-  before_filter :convert_tag_ids_to_names, :only => [:create, :update]
 
   # GET /features
   def index
@@ -86,10 +85,5 @@ class FeaturesController < ApplicationController
 
   def load_tags
     @tags = Feature.tag_counts_on(:tags)
-  end
-
-  def convert_tag_ids_to_names
-    return if params[:feature][:tag_ids].blank?
-    params[:feature][:tag_list] = ActsAsTaggableOn::Tag.find(params[:feature].delete(:tag_ids)).collect(&:name).join(', ')
   end
 end

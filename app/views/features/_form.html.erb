@@ -2,7 +2,7 @@
   <%= javascript_include_tag 'jquery.fcbkcomplete.min.js' %>
   <%= javascript_tag do %>
     $(document).ready(function() {
-      $("#feature_tag_ids").fcbkcomplete({
+      $("#feature_tag_list").fcbkcomplete({
         json_url: "<%= tags_url %>",
         newel: true
       });
@@ -18,7 +18,10 @@
     <%= form.input :description %>
     <%= form.input :source_url, :hint => 'Usually link to the github repo' %>
     <%= form.input :demo_url, :hint => 'Link to the code demo' %>
-    <%= form.input :tags, :as => :select %>
+    <li>
+      <%= form.label 'Tags' %>
+      <%= form.select :tag_list, @feature.tags.collect {|t| [ t.name, t.name ] }, {}, { :multiple => 'multiple' } %>
+    </li>
   <% end %>
 
   <%= form.buttons do %>
