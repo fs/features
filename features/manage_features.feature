@@ -10,6 +10,22 @@ Feature: Manage features
     Then I should see "Sign in"
     And I should see "Sign out"
 
+  Scenario: Searching features
+    Given I am logged in as "me@timurv.ru/123456"
+    And a feature exists with name: "Rails 3 skeleton"
+    And a feature exists with name: "Scaffold"
+    And I am on the features page
+    When I fill in "search_query" with "scaffold"
+    And I press "Search"
+    Then the "search_query" field should contain "scaffold"
+    And I should see "Scaffold"
+    And I should not see "Rails 3 skeleton"
+    When I fill in "search_query" with "Rails"
+    And I press "Search"
+    Then the "search_query" field should contain "Rails"
+    And I should see "Rails"
+    And I should not see "Skeleton"
+
   Scenario: Create new feature with valid data
     Given I am logged in as "me@timurv.ru/123456"
     And I am on the new feature page

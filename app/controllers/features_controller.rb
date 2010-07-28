@@ -1,10 +1,12 @@
+require 'ostruct'
+
 class FeaturesController < ApplicationController
   navigation :features
   before_filter :authenticate_user!
 
   # GET /features
   def index
-    @features = Feature.all
+    @features, @search = search(Feature.scoped)
 
     respond_to do |format|
       format.html # index.html.erb

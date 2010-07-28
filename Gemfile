@@ -10,6 +10,8 @@ gem 'simple-navigation'
 gem 'formtastic', :git => "git://github.com/justinfrench/formtastic.git", :branch => "rails3"
 gem 'flutie'
 gem 'RedCloth'
+gem 'pacecar', '1.3.0'
+gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
 
 # Heroku hack b/c we don't want use these gem on heroku env
 unless HEROKU

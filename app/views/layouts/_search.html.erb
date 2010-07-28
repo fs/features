@@ -1,0 +1,6 @@
+<%= semantic_form_for :search, :html => {:method => :get} do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :query, :hint => 'Input search query. Ex.: Rails 3', :label => false %>
+    <%= form.commit_button 'Search' %>
+  <% end %>
+<% end %>
