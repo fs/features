@@ -1,3 +1,15 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.fcbkcomplete.min.js' %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $("#feature_tag_ids").fcbkcomplete({
+        json_url: "<%= tags_url %>",
+        newel: true
+      });
+    });
+  <% end %>
+<% end %>
+
 <%= semantic_form_for(@feature) do |form| %>
   <%= form.inputs do %>
     <%= form.input :name, :required => true %>
@@ -6,11 +18,10 @@
     <%= form.input :description %>
     <%= form.input :source_url, :hint => 'Usually link to the github repo' %>
     <%= form.input :demo_url, :hint => 'Link to the code demo' %>
-    <%= form.input :tag_list, :hint => 'Comma separated tags' %>
+    <%= form.input :tags, :as => :select %>
   <% end %>
 
   <%= form.buttons do %>
-    <%= form.commit_button %>
+    <%= form.commit_button %> or <%= link_to 'Back', :back %>
   <% end %>
-
 <% end %>

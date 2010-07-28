@@ -8,6 +8,7 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js { render :json => @tags.collect {|tag| {:caption => tag.name, :value => tag.count} }.to_json }
     end
   end
 
