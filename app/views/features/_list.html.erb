@@ -16,7 +16,7 @@
         <% end %>
         <% unless feature.source_url.blank? %>
           <li>
-            Source at <%= link_to feature.source_url, feature.source_url %>
+            Source at <%= auto_link(feature.source_url) %>
           </li>
         <% end %>
 
