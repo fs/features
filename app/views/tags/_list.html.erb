@@ -1,0 +1,10 @@
+<% tag_cloud(@tags, %w(tag1 tag2 tag3 tag4)) do |tag, css_class| %>
+  <ul>
+    <li>
+      <%= link_to(tag.name, by_tag_features_path(:tag => tag.name), :class => css_class) %>
+      (<%= pluralize(tag.count, 'feature') %>) |
+      <%= link_to 'Edit', edit_tag_path(tag), :class => 'edit' %> |
+      <%= link_to 'Destroy', tag_path(tag), :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %>
+    </li>
+  </ul>
+<% end %>

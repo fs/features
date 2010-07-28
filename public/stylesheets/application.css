@@ -32,8 +32,8 @@ body { background-color: #dadada;}
   color: black
 }
 
-.tags .size1 { font-size: 1.0em; }
-.tags .size2 { font-size: 1.2em; }
-.tags .size3 { font-size: 1.4em; }
-.tags .size4 { font-size: 1.6em; }
+.tag1 { font-size: 1.0em; }
+.tag2 { font-size: 1.2em; }
+.tag3 { font-size: 1.4em; }
+.tag4 { font-size: 1.6em; }
 
