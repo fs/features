@@ -31,3 +31,9 @@ body { background-color: #dadada;}
 #navigation ul li a:hover, #navigation ul li .selected {
   color: black
 }
+
+.tags .size1 { font-size: 1.0em; }
+.tags .size2 { font-size: 1.2em; }
+.tags .size3 { font-size: 1.4em; }
+.tags .size4 { font-size: 1.6em; }
+

@@ -5,4 +5,6 @@ class Feature < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :est, :presence => true
+
+  acts_as_taggable
 end

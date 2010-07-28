@@ -2,14 +2,23 @@ require 'ostruct'
 
 class FeaturesController < ApplicationController
   navigation :features
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :load_tags
 
   # GET /features
   def index
-    @features, @search = search(Feature.scoped)
+    @features, @search = search(Feature.includes(:tags))
 
     respond_to do |format|
       format.html # index.html.erb
+    end
+  end
+
+  # GET /features/by_tag?tag=tag_name
+  def by_tag
+    @features = Feature.tagged_with(params[:tag]).paginate(:per_page => 10, :page => params[:page])
+
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -70,5 +79,11 @@ class FeaturesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(features_url) }
     end
+  end
+
+  private
+
+  def load_tags
+    @tags = Feature.tag_counts_on(:tags)
   end
 end

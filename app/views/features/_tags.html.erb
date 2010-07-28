@@ -1,0 +1,5 @@
+<div class="tags">
+  <% tag_cloud(@tags, %w(size1 size2 size3 size4)) do |tag, css_class| %>
+    <%= link_to(tag.name, by_tag_features_path(:tag => tag.name), :class => css_class) %>
+  <% end %>
+</div>

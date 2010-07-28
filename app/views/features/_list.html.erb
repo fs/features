@@ -1,0 +1,31 @@
+<% @features.each do |feature| %>
+  <ul>
+    <li>
+      <%= link_to(feature.name, feature_path(feature)) %> |
+      <%= link_to 'Edit', edit_feature_path(feature), :class => 'edit' %> |
+      <%= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %>
+
+      <ul>
+        <li>
+          EST <%= feature.est %>H
+        </li>
+        <% unless feature.tags.blank? %>
+          <li>
+            <%= links_to_tags(feature) %>
+          </li>
+        <% end %>
+        <% unless feature.source_url.blank? %>
+          <li>
+            Source at <%= link_to feature.source_url, feature.source_url %>
+          </li>
+        <% end %>
+
+        <% unless feature.demo_url.blank? %>
+          <li>
+            Demo at <%= link_to feature.demo_url, feature.demo_url %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+<% end %>

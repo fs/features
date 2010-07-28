@@ -1,22 +1,13 @@
-<% title 'Listing features' %>
-
-<%= render 'layouts/search' %>
+<% title %Q{Listing features by "#{params[:tag]}" tag} %>
 
 <% if @features.blank? %>
-  <h2>No features in the base</h2>
+  <h2>No features in the base with this tag</h2>
   Try to create <%= link_to 'new one', new_feature_path %>
 <% else %>
   <%= render 'list' %>
   <%= will_paginate @features %>
   <%= render 'tags' %>
   <br /><br />
+  <%= link_to 'All features', features_path %>
   <%= link_to 'New feature', new_feature_path %>
 <% end %>
-
-
-
-
-
-
-
-
