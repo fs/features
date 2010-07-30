@@ -3,10 +3,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
   navigation.items do |primary|
     primary.dom_class = 'main'
-    primary.item :features, 'Features', features_path
-
-    primary.with_options(:if => Proc.new { user_signed_in? }) do |signed_in_user|
-      signed_in_user.item :tags, 'Tags', tags_path
-    end
+    primary.item :features, 'Features', features_path, :if => Proc.new { can?(:read, Feature) }
+    primary.item :unapproved_features, 'Unapproved features', unapproved_features_path, :if => Proc.new { can?(:read, Feature) && user_signed_in? }
+    primary.item :tsgs, 'Tags', tags_path, :if => Proc.new { can? :read, ActsAsTaggableOn::Tag }
   end
 end

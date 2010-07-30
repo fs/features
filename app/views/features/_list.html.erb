@@ -1,9 +1,15 @@
 <% @features.each do |feature| %>
   <ul>
     <li>
-      <%= link_to(feature.name, feature_path(feature)) %> |
-      <%= link_to 'Edit', edit_feature_path(feature), :class => 'edit' %> |
-      <%= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %>
+      <% if can?(:read, feature) %>
+        <%= link_to(feature.name, feature_path(feature)) %>
+      <% end %>
+      <% if can?(:update, feature) %>
+        <%= link_to 'Edit', edit_feature_path(feature), :class => 'edit' %>
+      <% end %>
+      <% if can?(:destroy, feature) %>
+        <%= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %>
+      <% end %>
 
       <ul>
         <li>
@@ -25,6 +31,9 @@
             Demo at <%= link_to feature.demo_url, feature.demo_url %>
           </li>
         <% end %>
+        <li>
+          by <%= feature.user.full_name_with_email %>
+        </li>
       </ul>
     </li>
   </ul>

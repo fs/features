@@ -1,22 +1,32 @@
 require 'ostruct'
 
 class FeaturesController < ApplicationController
-  navigation :features
-  before_filter :authenticate_user!, :except => [:index, :by_tag, :show]
   before_filter :load_tags
+
+  before_filter :authenticate_user!, :except => [:index, :by_tag, :unapproved, :show]
+  load_and_authorize_resource :except => [:index, :by_tag, :unapproved, :show]
 
   # GET /features
   def index
-    @features, @search = search(Feature.includes(:tags))
+    @features, @search = search(Feature.approved.accessible_by(current_ability).includes(:tags))
 
     respond_to do |format|
       format.html # index.html.erb
     end
   end
 
+  # GET /features/unapproved
+  def unapproved
+    @features, @search = search(Feature.not_approved.accessible_by(current_ability).includes(:tags))
+
+    respond_to do |format|
+      format.html { render :action => 'index' }
+    end
+  end
+
   # GET /features/by_tag?tag=tag_name
   def by_tag
-    @features = Feature.tagged_with(params[:tag]).paginate(:per_page => 10, :page => params[:page])
+    @features = Feature.approved.accessible_by(current_ability).tagged_with(params[:tag]).paginate(:per_page => 10, :page => params[:page])
 
     respond_to do |format|
       format.html
@@ -34,8 +44,6 @@ class FeaturesController < ApplicationController
 
   # GET /features/new
   def new
-    @feature = Feature.new
-
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -48,7 +56,7 @@ class FeaturesController < ApplicationController
 
   # POST /features
   def create
-    @feature = Feature.new(params[:feature])
+    @feature.user = current_user
 
     respond_to do |format|
       if @feature.save
@@ -59,10 +67,26 @@ class FeaturesController < ApplicationController
     end
   end
 
+  # PUT /features/1/approve
+  def approve
+    @feature.approve!
+
+    respond_to do |format|
+      format.html { redirect_to(features_url, :notice => 'Feature was approved.') }
+    end
+  end
+
+  # PUT /features/1/unapprove
+  def unapprove
+    @feature.unapprove!
+
+    respond_to do |format|
+      format.html { redirect_to(features_url, :notice => 'Feature was unapproved.') }
+    end
+  end
+
   # PUT /features/1
   def update
-    @feature = Feature.find(params[:id])
-
     respond_to do |format|
       if @feature.update_attributes(params[:feature])
         format.html { redirect_to(features_path, :notice => 'Feature was successfully updated.') }
@@ -74,7 +98,6 @@ class FeaturesController < ApplicationController
 
   # DELETE /features/1
   def destroy
-    @feature = Feature.find(params[:id])
     @feature.destroy
 
     respond_to do |format|

@@ -27,6 +27,16 @@
 
 <hr />
 
-<%= link_to 'Edit', edit_feature_path(@feature) %> or
+<% if can?(:approve_feature, @feature) %>
+  <% if @feature.approved? %>
+    <%= link_to('Unapprove!', unapprove_feature_path(@feature), :confirm => "Are you sure?", :method => :put) %>
+  <% else %>
+    <%= link_to('Approve!', approve_feature_path(@feature), :confirm => "Are you sure?", :method => :put) %>
+  <% end %>
+<% end %>
+
+<% if can?(:update, @feature) %>
+  <%= link_to 'Edit', edit_feature_path(@feature)  %>
+<% end %>
 <%= link_to 'Back', :back %>
 

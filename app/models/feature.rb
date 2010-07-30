@@ -7,4 +7,12 @@ class Feature < ActiveRecord::Base
   validates :est, :presence => true
 
   acts_as_taggable
+
+  def approve!
+    update_attribute :approved, true
+  end
+
+  def unapprove!
+    update_attribute :approved, false
+  end
 end

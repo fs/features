@@ -13,7 +13,8 @@ gem 'RedCloth'
 gem 'pacecar', '1.3.0'
 gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
 gem 'acts-as-taggable-on'
-
+gem 'cancan'
+  
 # Heroku hack b/c we don't want use these gem on heroku env
 unless HEROKU
   group :test do

@@ -1,5 +1,4 @@
 class TagsController < ApplicationController
-  navigation :tags
   before_filter :authenticate_user!
 
   # GET /tags

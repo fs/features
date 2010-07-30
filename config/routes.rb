@@ -6,6 +6,9 @@ Features::Application.routes.draw do
 
   resources :features do
     get :by_tag, :on => :collection
+    get :unapproved, :on => :collection
+    put :approve, :on => :member
+    put :unapprove, :on => :member
   end
   resources :tags
   root :to => 'features#index'

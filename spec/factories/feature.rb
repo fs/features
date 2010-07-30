@@ -6,4 +6,5 @@ Factory.define :feature do |f|
   f.demo_url 'http://fs-rails3-base.heroku.com/'
   f.est '1'
   f.user {|a| a.association(:user) }
+  f.approved true
 end

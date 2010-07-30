@@ -2,12 +2,18 @@
 
 <% if @features.blank? %>
   <h2>No features in the base with this tag</h2>
-  Try to create <%= link_to 'new one', new_feature_path %>
+  <% if can?(:create, Feature) %>
+    Try to create <%= link_to 'new one', new_feature_path %>
+  <% end %>
 <% else %>
   <%= render 'list' %>
   <%= will_paginate @features %>
   <%= render 'tags' %>
   <br /><br />
-  <%= link_to 'All features', features_path %>
-  <%= link_to 'New feature', new_feature_path %>
+  <% if can?(:read, Feature) %>
+    <%= link_to 'All features', features_path %>
+  <% end %>
+  <% if can?(:create, Feature) %>
+    <%= link_to 'New feature', new_feature_path %>
+  <% end %>
 <% end %>

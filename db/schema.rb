@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100728164323) do
+ActiveRecord::Schema.define(:version => 20100802053329) do
 
   create_table "features", :force => true do |t|
     t.string   "name"
@@ -21,9 +21,21 @@ ActiveRecord::Schema.define(:version => 20100728164323) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved",                   :default => false
   end
 
   add_index "features", ["user_id"], :name => "index_features_on_user_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
