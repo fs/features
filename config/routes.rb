@@ -8,5 +8,5 @@ Features::Application.routes.draw do
     get :by_tag, :on => :collection
   end
   resources :tags
-  root :to => 'dashboard#index'
+  root :to => 'features#index'
 end
