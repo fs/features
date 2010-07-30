@@ -2,17 +2,15 @@ Feature: Manage features
   As a manager
   I want to be able to manage features
 
-  Scenario: Listing features
-    Given I am logged in as "me@timurv.ru/123456"
-    And a feature exists with name: "Sign in"
+  Scenario: Listing features without auth
+    Given a feature exists with name: "Sign in"
     And a feature exists with name: "Sign out"
     And I am on the features page
     Then I should see "Sign in"
     And I should see "Sign out"
 
-  Scenario: Searching features
-    Given I am logged in as "me@timurv.ru/123456"
-    And a feature exists with name: "Rails 3 skeleton"
+  Scenario: Searching features without auth
+    Given a feature exists with name: "Rails 3 skeleton"
     And a feature exists with name: "Scaffold"
     And I am on the features page
     When I fill in "search_query" with "scaffold"
@@ -26,15 +24,19 @@ Feature: Manage features
     And I should see "Rails"
     And I should not see "Skeleton"
 
-  Scenario: Listing features by tags
-    Given I am logged in as "me@timurv.ru/123456"
-    And a feature exists with name: "Sign in", tag_list: "rails, auth"
+  Scenario: Listing features by tags without auth
+    Given a feature exists with name: "Sign in", tag_list: "rails, auth"
     And a feature exists with name: "Scaffold", tag_list: "rails"
     When I am on the features page
     Then I should see "auth"
     When I follow "auth"
     Then I should see "Sign in"
     And I should not see "Scaffold"
+
+  Scenario: Viewing feature without auth
+    Given a feature exists with name: "Sign in", id: 1
+    When I am on the feature page with id: 1
+    Then I should see "Sign in"
 
   Scenario: Create new feature with valid data
     Given I am logged in as "me@timurv.ru/123456"

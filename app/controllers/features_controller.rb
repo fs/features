@@ -2,7 +2,8 @@ require 'ostruct'
 
 class FeaturesController < ApplicationController
   navigation :features
-  before_filter :authenticate_user!, :load_tags
+  before_filter :authenticate_user!, :except => [:index, :by_tag, :show]
+  before_filter :load_tags
 
   # GET /features
   def index
