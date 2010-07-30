@@ -18,10 +18,7 @@
     <%= form.input :description %>
     <%= form.input :source_url, :hint => 'Links to the commits comma separated' %>
     <%= form.input :demo_url, :hint => 'Link to the code demo' %>
-    <li>
-      <%= form.label 'Tags' %>
-      <%= form.select :tag_list, @feature.tags.collect {|t| [ t.name, t.name ] }, {}, { :multiple => 'multiple' } %>
-    </li>
+    <%= form.input :tag_list, :as => :select, :collection => @feature.tags.collect(&:name), :include_blank => false, :input_html => {:multiple => true} %>
   <% end %>
 
   <%= form.buttons do %>
