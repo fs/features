@@ -1,9 +1,7 @@
 <% @features.each do |feature| %>
-  <ul>
+  <ul class="feature">
     <li>
-      <% if can?(:read, feature) %>
-        <%= link_to(feature.name, feature_path(feature)) %>
-      <% end %>
+      <h2><%= link_to(feature.name, feature_path(feature)) %></h2>
       <% if can?(:update, feature) %>
         <%= link_to 'Edit', edit_feature_path(feature), :class => 'edit' %>
       <% end %>

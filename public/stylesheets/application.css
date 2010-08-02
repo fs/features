@@ -37,3 +37,7 @@ body { background-color: #dadada;}
 .tag3 { font-size: 1.4em; }
 .tag4 { font-size: 1.6em; }
 
+ul.feature > li {
+  display: inline;
+}
+
