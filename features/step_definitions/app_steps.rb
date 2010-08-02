@@ -31,6 +31,6 @@ Then /^access should be denied by authentication$/ do
 end
 
 Then /^access should be denied by authorization$/ do
-  Then %{I should be on the new user session page}
+  Then %{I should be on the root page}
   And %{I should see "You are not authorized to access this page."}
 end

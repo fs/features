@@ -3,8 +3,11 @@
     <li>
       <%= link_to(tag.name, by_tag_features_path(:tag => tag.name), :class => css_class) %>
       (<%= pluralize(tag.count, 'feature') %>) |
-      <%= link_to 'Edit', edit_tag_path(tag), :class => 'edit' %> |
-      <%= link_to 'Destroy', tag_path(tag), :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %>
+      
+      <% if can?(:manage, tag) %>
+        <%= link_to 'Edit', edit_tag_path(tag), :class => 'edit' %> |
+        <%= link_to 'Destroy', tag_path(tag), :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %>
+      <% end %>
     </li>
   </ul>
 <% end %>

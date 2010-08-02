@@ -3,14 +3,14 @@ Feature: Manage tags
   I want to be able to manage tags
 
   Scenario: Listing tags
-    Given I am logged in as "me@timurv.ru/123456"
+    Given I am logged in as "me@timurv.ru/123456" with "admin" role
     And a feature exists with name: "Sign in", tag_list: "rails, auth"
     And I am on the tags page
     Then I should see "rails"
     And I should see "auth"
 
   Scenario: Update tag with valid data
-    Given I am logged in as "me@timurv.ru/123456"
+    Given I am logged in as "me@timurv.ru/123456" with "admin" role
     And a tag: "tag1" exists with name: "tag1", id: 1
     And I am on the edit tag page with id: 1
     And I fill in "Name" with "New tag name"
@@ -20,7 +20,7 @@ Feature: Manage tags
     And a tag: "tag1" should exist with name: "New tag name"
 
   Scenario: Update tag with invalid data
-    Given I am logged in as "me@timurv.ru/123456"
+    Given I am logged in as "me@timurv.ru/123456" with "admin" role
     And a tag: "tag1" exists with name: "tag1", id: 1
     And I am on the edit tag page with id: 1
     And I fill in "Name" with ""

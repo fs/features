@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource :resource => ActsAsTaggableOn::Tag
 
   # GET /tags
   def index
@@ -13,12 +14,12 @@ class TagsController < ApplicationController
 
   # GET /tags/1/edit
   def edit
-    @tag = ActsAsTaggableOn::Tag.find(params[:id])
+#    @tag = ActsAsTaggableOn::Tag.find(params[:id])
   end
 
   # PUT /tags/1
   def update
-    @tag = ActsAsTaggableOn::Tag.find(params[:id])
+#    @tag = ActsAsTaggableOn::Tag.find(params[:id])
 
     respond_to do |format|
       if @tag.update_attributes(params[:tag])
@@ -31,7 +32,7 @@ class TagsController < ApplicationController
 
   # DELETE /tags/1
   def destroy
-    @tag = ActsAsTaggableOn::Tag.find(params[:id])
+#    @tag = ActsAsTaggableOn::Tag.find(params[:id])
     @tag.destroy
 
     respond_to do |format|
